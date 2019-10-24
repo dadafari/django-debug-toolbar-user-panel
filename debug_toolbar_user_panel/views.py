@@ -27,7 +27,7 @@ def login_form(request):
 def login(request, **kwargs):
     user = get_object_or_404(get_user_model(), **kwargs)
 
-    user.backend = settings.AUTHENTICATION_BACKENDS[0]
+    user.backend = settings.DEBUG_TOOLBAR_USER_PANEL_AUTHORIZATION_BACKEND
     auth.login(request, user)
 
     return HttpResponseRedirect(request.POST.get('next', '/'))
